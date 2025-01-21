@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\pagestyle{fancy}
+\fancyhead[l]{}
+\fancyhead[c]{Experiment 2}
+\fancyhead[r]{}
+\fancyfoot[c]{\thepage}
+\setlength{\headheight}{20pt}
+\begin{document}
+\author{}
+\date{}
+\title{Specific heat of Solids}
+\maketitle
+
+\section*{Aim}
+To calculate the specific heat capacities of various materials by dipping them in water and measuring the change in temperature.
+
+\section*{Theory}
+The change in temperature of a body and the amount of heat supplied to it are related by the given equation
+\[\Delta Q = cm\Delta T\]
+where $m$ is the mass of the body and $c$ is a constant called the specific heat of the given substance.
+
+\section*{Analysis}
+The points to ponder asks how one can calculate the water equivalant of the dewar if it were not given.
+We shall first calculate and verify the value of the water equivalent of the dewar.
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+        Reading & Initial Temperature & Final Temperature & Mass in $g$ \\ \hline
+        1 & 62.5 & 50 & 59.7 \\ \hline
+        2 & 55 & 52 & 37.1 \\ \hline
+        3 & 69 & 61 & 48.5 \\ \hline
+    \end{tabular}
+\end{table}
+
+In this table, only the first reading is valid because the readings were taken in quick sucession without cooling down the dewar
+So the temperature $T_0$ is not known from the second reading onwards.
+For the first reading $T_0$ is just the room temperature(the dewar was sitting there for a long time)
+To calculate the mass equivalant we replace the dewar with $m_f$ grams of water.
+As the total amount of heat in the system did not change, we can wrie the following equation
+\[\Delta Q = c(m_w)(T_i-T_0) = c(m_w+m_f)(T_f-T_0)\]
+On simplifing the equation becomes
+\[m_f = \frac{m_w(T_i-T_f)}{T_f-T_0}\]
+Calculating the value for the first reading we get the value as $28.7$ which is within the error range.
+Because the least count of the thermometer was $1^\circ C $ we see that if the values were $61.5$ and $51.0$(the worst cases) then the value is $23.3$ which is close to the actual value of $23$.
+If this was performed perfectly and not in a hurry the methord looks like this.
+
+Take water at a high temperature($T_i$) and pour it into the dewar which is initially kept a long time at room temperature($T_0$) and then measure the temperature of the water after pouring it into the dewar($T_f$).
+It would be good to know the mass of water that is being poured into the dewar, but if one can measure it later by measuring the mass of dewar with the water and then subtracting the mass of the dewar.
+All values are known so now one can calculate $m_f$
+Alternatively, one can pour water two times, measure all the values from before both times and then solve for the value of $m_f$ because we have two equations and two variables.
+This is a bit convoluted but does not involve assuming that the dewar is at room temperature but one can actually measure for the dewar-water combo after water is poured the first time.
+
+Now for calculating values of specific heat for the given materials, we see the table below
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+            & \multicolumn{2}{c|}{Mass in $g$} & \multicolumn{2}{c|}{$T$ in steam} &\multicolumn{2}{c|}{$T$ in dewar} \\ \hline
+        Material & Shots & Water &   top   & bottom & Initial  & Final  \\ \hline
+        Acrylic & 41.7 & 181.6 & 95.5 & - & 22.5 & 26 \\ \hline
+        Brass & 144.3 & 181.1 & 96.6 & 97.9 & 23 & 28 \\ \hline
+        Iron & 134.1 & 182.7 & 95.1 & 97.2 & 24 & 29 \\ \hline
+        Ceramic & 24.1 & 180.2 & 96.6 & - & 24 & 25.5 \\ \hline
+    \end{tabular}
+\end{table}
+
+In the table above, top and bottom represent the position of the thermometer in the steam chamber.
+Top is the temperature of the shots at the top of the heating apparatus and Bottom is the temperature of the shots at the bottom.
+This happened because the steam arriving hits the bottom and heats up the shots at the bottom more than the shots at the top.
+The reading of bottom for Acrylic and Ceramic are not present because I could not shove the thermometer deep enough.
+For brass and iron, the temperature value for $T_s$ can be taken as the average of the values of top and bottom.
+This is a reasonable approximation as the values are close
+
+The heat lost by the shots is the same as the heat gained by the water-dewar system.
+We calculate the value of specific heat of the material of the shots by the followig formula
+\[c_s=c_w\frac{(m_w+m_f)(T_f-T_i)}{m_s(T_s-T_f)}\]
+Doing the caluculation for all the materials we get the values of specific heat as follows
+\begin{align*}
+    c_{\text{acrylic}} &= 4.19\cdot \frac{(181.6+23)(26-22.5)}{41.7(95.5-26)} \\
+    &=1.035\\
+    c_{\text{brass}} &= 4.19\cdot \frac{(181.1+23)(28-23)}{144.3(97.2-28)} \\
+    &=0.428 \\
+    c_{\text{iron}} &= 4.19\cdot \frac{(182.7+23)(29-24)}{134.1(96.1-29)} \\
+    &=0.479\\
+    c_{\text{ceramic}} &= 4.19\cdot \frac{(180.2+23)(25.5-24)}{24.1(96.6-25.5)} \\
+    &=0.745
+\end{align*}
+While measuring values, only one measurement was taken, therefore the computable error is due to the least count of the instruments.
+For the value of $T_s$, for the values that we have top and bottom measurement the error is the highest value for the following relation $$\sigma_{T_s} = \frac{\text{bottom}-\text{top}}{2}$$
+The largest deviation was for brass, so top and bottom measurements are taken from it.
+The rest get the values of least count.
+Hence, the uncertainties are
+\begin{align*}
+    \sigma_{m_w} &= 0.1g \\
+    \sigma_{m_s} &= 0.1g \\
+    \sigma_{T_i} &= 0.5^\circ C \\
+    \sigma_{T_f} &= 0.5^\circ C \\
+    \sigma_{T_s} &= 0.7^\circ C
+\end{align*}
+If $f$ is a function of $x_i$s then the uncertainty in $f$ is given by
+\[\sigma_f^2=\sum_{i = 1}^{n} \bigg(\frac{\partial f}{\partial x_i}\sigma_{x_i}\bigg)^2 \]
+$c_s$ is a function of $m_w$, $T_f$, $T_i$, $T_s$ and $m_s$.
+\[\frac{\partial f}{\partial {m_w}}=\frac{c_w(T_f-T_i)}{m_s(T_s-T_f)}\sigma_{m_w}\]
+\[\frac{\partial f}{\partial {T_i}}=-\frac{c_w(m_w+m_f)}{m_s(T_s-T_f)}\sigma_{T_i}\]
+\[\frac{\partial f}{\partial {T_f}}=\frac{c_w(m_w+m_f)(T_s-T_i)}{m_s(T_s-T_f)^2}\sigma_{T_f}\]
+\[\frac{\partial f}{\partial {T_s}}=-\frac{c_w(m_w+m_f)(T_f-T_i)}{m_s(T_s-T_f)^2}\sigma_{T_s}\]
+\[\frac{\partial f}{\partial {m_s}}=-\frac{c_w(m_w+m_f)(T_f-T_i)}{m_s^2(T_s-T_f)}\sigma_{m_s}\]
+The error in the values is equal to $\sigma_f$ as there is only one reading
+Calculating the values of uncertainty using the formula above gives us the error in measurement of each material
+\begin{align*}
+    \sigma_{acrylic} &= 0.215 \\
+    \sigma_{brass} &= 0.063 \\
+    \sigma_{iron} &= 0.0705 \\
+    \sigma_{ceramic} &= 0.355
+\end{align*}
+\section*{Result}
+The value of the specific heat is reported as $c_x \pm \sigma_x$.
+The units are same as the units of $c_w$ which is $J/g^\circ C$.
+Thus, the values of the specific heat of the measured materials are listed below
+\begin{align*}
+    \text{Acrylic} &= 1.035 \pm 0.215 \text{  }J/g^\circ C\\
+    \text{Brass} &= 0.428 \pm 0.063\text{  } J/g^\circ C\\
+    \text{Iron} &= 0.479 \pm 0.0705\text{  } J/g^\circ C\\
+    \text{Ceramic} &= 0.745 \pm 0.355\text{  } J/g^\circ C
+\end{align*}
+\end{document}
