@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\usepackage{matlab-prettifier}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots} 
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{array,multirow}
+\usepackage{tabularx,booktabs}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\fwidth
+\newlength\fheight
+\usepackage{float,graphicx}
+\pagestyle{fancy}
+\fancyhead[l]{}
+\fancyhead[c]{Experiment 1}
+\fancyhead[r]{}
+\fancyfoot[c]{\thepage}
+\setlength{\headheight}{20pt}
+\begin{document}
+\author{}
+\date{}
+\title{Stefan's Law}
+\maketitle
+\section*{Aim}
+To verify that a body at temperature T radiates heat at a rate proportional to the fourth power of T and calculate the constant of proportionality.
+
+\section*{Theory}
+For a body at temperature $T$ and ambient temperature $T_a$, the rate of heat exchange is given by the expression
+\[\dot{Q}=\epsilon \sigma A(T^4 -T_a^4)\]
+where $\sigma$ is Stefan's constant, $\epsilon$ is the emissivity and $A$ is the surface area of the body.
+In the experimental setup, a tungsten filament is connected to a battery and emits radiation.
+When the system archives thermal equilibrium, the electrical power consumed is equal to the rate of heat radiated.
+It is also given that the resistance of the filament depends on the temperature according to the given equation
+\[R = R_0(1+\alpha T +\beta T^2)\]
+\[\beta T^2 + \alpha T + (1-\frac{R}{R_0})=0\]
+
+\begin{align*}
+    T &= \frac{-\alpha + \sqrt{\alpha ^2 -4\beta (1-\frac{R}{R_0})} }{2\beta} \\
+    T &= \frac{-5.21 + \sqrt{27.1441-2.88(1-\frac{R}{1.31})}}{14.4}\times 10^4
+\end{align*}
+\section*{Analysis}
+The actual dependence of temperature is given by
+\[\frac{dR}{R}=c dT\]
+where c is a constant. Solving this equation gives
+\[R=R_0e^{c(T-T_0)}\]
+
+The given relation of the dependence of temperature is the taylor series approximation
+This is a good approximation but has a few problems that are immediately apparent.
+First we see the fisrt few calculated values of resistance by the quadratic relation.
+\begin{table}[!hbt]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+        Voltage($V$) & Current($I$) & Resistance($R$) & Temperature($T$) \\ \hline
+        0.03 & 0.01 & 3.00 & 239.61 \\ \hline
+        0.07 & 0.02 & 3.50 & 307.70 \\ \hline
+        0.11 & 0.03 & 3.67 & 330.14 \\ \hline
+        0.16 & 0.04 & 4.00 & 374.64 \\ \hline
+        0.22 & 0.05 & 4.40 & 427.39 \\ \hline
+        0.34 & 0.06 & 5.67 & 590.07 \\ \hline
+        0.48 & 0.07 & 6.86 & 737.43 \\ \hline
+        0.59 & 0.08 & 7.38 & 800.00 \\ \hline
+    \end{tabular}
+    \caption{Values of $R$ and $T$ for lower values}
+\end{table}
+
+Notice that the first value of the calculated resistance is more than 50$K$ below the ambient temperature ($296K$) which cannot be possible.
+To see what is going wrong, we look at the graph below.
+\begin{figure}[!ht]
+    \centering
+    \setlength\fwidth{0.62\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{quadratic.tex}
+\end{figure}
+
+In the graph,all data points of $T$ calculated from resistance are ploted against $R$.
+The solid line represents the best fit quadratic curve which is the same as the one listed above.
+The data points match up because this is the relation used to calculate the values of temperature.
+The dotted line shows the best fit exponential curve.
+
+From the figure we see that the quadratic curve almost indistinguishable from the exponential near the higher values,
+however at lower values of $y$ both curves begin to diverge.
+For the same value of $y$ the value of $x$ for the quadratic function is lower than the value of $x$ for the exponential.
+This means that for lower values of resistance, the quadratic formula for temperature gives a lower than expected value
+which is most likely the reason that the first value of calculated temperature is lower than the ambient temperature
+
+For this reason, I shall be excluding all values lower than the given value of $800K$ of glowing temperature.
+
+The second question in the points to ponder asks how much error is in neglecting the $T_a$ term in the heat exchange expression.
+It is safe to assume that the ambient temperature ranges between $300K$ to $400K$.(input source)
+
+For this we see the following table
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+        $T_a$ & $T^4-T_a^4$ \\ \hline
+        0 & 4.10E+11 \\ \hline
+        20 & 4.10E+11 \\ \hline
+        40 & 4.10E+11 \\ \hline
+        60 & 4.10E+11 \\ \hline
+        80 & 4.10E+11 \\ \hline
+        100 & 4.10E+11 \\ \hline
+        120 & 4.09E+11 \\ \hline
+        140 & 4.09E+11 \\ \hline
+        160 & 4.09E+11 \\ \hline
+        180 & 4.09E+11 \\ \hline
+        200 & 4.08E+11 \\ \hline
+        220 & 4.07E+11 \\ \hline
+        240 & 4.06E+11 \\ \hline
+        260 & 4.05E+11 \\ \hline
+        280 & 4.03E+11 \\ \hline
+        300 & 4.02E+11 \\ \hline
+        320 & 3.99E+11 \\ \hline
+        340 & 3.96E+11 \\ \hline
+        360 & 3.93E+11 \\ \hline
+        380 & 3.89E+11 \\ \hline
+        400 & 3.84E+11 \\ \hline
+    \end{tabular}
+    \caption{Values are calculated for $T$=800$K$}
+\end{table}
+
+\noindent From the table we can calculate the worst case error in  neglecting the ambient temperature
+\[\frac{4.10-3.84}{3.84}=6.77\%\]
+As the temperature increases, due to the magnitude of $T^4$ the error becomes small.
+
+%Realistically, the actual errors for neglecting ambient temperature is as given in the below figure(credit)
+
+I shall not be ignoring the ambient temperature completely, but considering it to be constant at arount $300K$.
+\begin{figure}[!ht]
+    \centering
+    \setlength\fwidth{0.75\textwidth}
+    \setlength\fheight{0.45\textwidth}
+    \input{regression.tex}
+\end{figure}
+
+\noindent Performing regression for the formula
+$y=c(x^a-300^a)$
+we get the value of $a$ as 4.27 (with $R^2 = 0.9987$)
+
+\begin{figure}[!ht]
+    \centering
+    \setlength\fwidth{0.75\textwidth}
+    \setlength\fheight{0.45\textwidth}
+    \input{compare.tex}
+\end{figure}
+
+When fitting is performed with the formula $y=c(x^4-300^4)$
+we get the value of c to be $7.24376\times10^{-14}$
+
+Now, $c = \epsilon \sigma A$.
+The fillament can be thought of as a cylinder, thus the surface area is $2\pi r h$.
+The radii($r$) and length($h$) of the filament were the order of $10^{-3}$(1mm) each.
+$\epsilon$ lies between 0 and one.
+This verifies that the order of magnitudes of calculated and given Stefan-Boltzmann constant are the same.
+\[\frac{10^{-14}}{10^{-3}\times 10^{-3}} = 10^{-8}\]
+There is not really much to comment about the value because we do not know the value of $\epsilon$ and $A$
+
+\section*{Result}
+We have verified that heat radiated is proportional to the fourth power of temperature.
+\end{document}
