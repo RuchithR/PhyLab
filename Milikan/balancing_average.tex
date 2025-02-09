@@ -1,0 +1,53 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.12941,0.12941,0.12941}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.951\fwidth,
+height=\fheight,
+at={(0\fwidth,0\fheight)},
+scale only axis,
+xmin=0.5,
+xmax=5.5,
+xtick={1, 2, 3, 4, 5, 6},
+xlabel style={font=\color{mycolor2}},
+xlabel={Measurement Number},
+ymin=2.75,
+ymax=3.45,
+ylabel style={font=\color{mycolor2}},
+ylabel={Value},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+legend style={legend cell align=left, align=left}
+]
+\addplot [color=mycolor1, only marks, mark=o, mark options={solid, mycolor1}]
+ plot [error bars/.cd, y dir=both, y explicit, error bar style={line width=0.5pt}, error mark options={line width=0.5pt, mark size=6.0pt, rotate=90}]
+ table[row sep=crcr, y error plus index=2, y error minus index=3]{%
+1	3.15	0.0195765021962076	0.0195765021962076\\
+2	2.97	0.0175920142411649	0.0175920142411649\\
+3	3.27	0.149531708477612	0.149531708477612\\
+4	2.86	0.0907664925948764	0.0907664925948764\\
+5	3.13	0.0230812549239666	0.0230812549239666\\
+};
+\addlegendentry{Data}
+
+\addplot [color=red]
+  table[row sep=crcr]{%
+0	3.06767904503621\\
+6	3.06767904503621\\
+};
+\addlegendentry{Weighted Average}
+
+\addplot [color=blue, dashed]
+  table[row sep=crcr]{%
+0.5	3.076\\
+5.5	3.076\\
+};
+\addlegendentry{Average}
+
+\end{axis}
+\end{tikzpicture}%

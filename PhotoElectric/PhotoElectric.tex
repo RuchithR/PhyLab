@@ -1,0 +1,219 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\usepackage{matlab-prettifier}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots} 
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{array,multirow}
+\usepackage{tabularx,booktabs}
+\usepackage{caption}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\fwidth
+\newlength\fheight
+\usepackage{float,graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections}
+\tikzset{ray/.style={red,-latex},object/.style={thick,blue,-latex}}
+\pagestyle{fancy}
+\fancyhead[l]{}
+\fancyhead[c]{Experiment 3}
+\fancyhead[r]{}
+\fancyfoot[c]{\thepage}
+\setlength{\headheight}{20pt}
+\begin{document}
+\author{}
+\date{}
+\title{Photo Electric Effect}
+\maketitle
+\captionsetup[figure]{labelformat=empty}
+\captionsetup{justification = centering}
+
+\section*{Aim}
+To Determine Plank's constant by Photo Electric Effect and verify the the inverse square law.
+
+\section*{Theory}
+Metals when hit with radiation of certain frequencies emit electrons
+\[hf = \underbrace{\frac{1}{2}mv^2}_\text{K.E of e}+e\phi \]
+Substituting : $\displaystyle \frac{1}{2}mv^2= eV_s$ , we get
+
+\[V_s=\frac{h}{e}f - \phi\]
+
+\section*{Analysis}
+In theory, the value for stopping potential should not differ for any value of intensity or distance.
+First we look at the data of stopping voltage for high and low intensities keeping distance constant for both values.
+Notice that the values are only $0.01V$ which is just the least count error.
+The values only diverge for low intensity, large distance and blue filter.
+Also the last value was not recorded because the current never hit zero.
+This might happen because the intensity of light passing through the filter is not enough to activate the sensor.
+
+Other than this outlier, all other values for stopping potential for high and low intensities are the same.
+%Thus, we can conclude that the stopping potential does not depend on the intensity of light shined as long as it is above a certain treshold.
+However we see a small difference when we vary distance.
+We shall calculate the errors as the difference in readings of the two most extreme values of stopping voltage
+\begin{align*}
+    \text{Red : }0.25-0.24 = 0.01 \\
+    \text{Yellow 1 : }0.45-0.43 = 0.02 \\
+    \text{Yellow 2 : }0.51-0.49 = 0.02 \\
+    \text{Green : }0.62-0.55 = 0.07 \\ 
+    \text{Blue : }0.74-0.65 = 0.09 \\
+\end{align*}
+
+\begin{figure}[!ht]
+    \centering
+    \caption{Fitting for both cases}
+    \setlength\fwidth{0.6\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{far.tex}
+    \input{near.tex}
+\end{figure}
+We get the value of $h$ as
+\[4.801 \pm 0.343 \text{ for 20 cm}\]
+\[4.673 \pm 0.343 \text{ for 25 cm}\]
+
+Both values are in accordance with each other.
+Thus, the we take the final value of the plank's constant as the average of both values.
+\[h = 0.4737 \pm 0.343\text{ }Js\]
+\subsection*{Inverse Square Law}
+We need to verify that intensity falls off with the inverse square of distance from light source.
+Instead of doing a fit for 
+$$\displaystyle y = \frac{c}{x^a}$$
+I shall be doing a fit for 
+$$\displaystyle y = \frac{c}{x^a}+k$$
+The reason for doing this is explained below
+
+Notice that the current measured for the different filters peaks for $570 nm$ yellow filter and falls off both ways.
+This is because for most lamps emit most of thier light in the yellow region of the spectum.
+As all lamps emmit mostly yellow light we can assume that most noise is also distrubuted in  a similar manner.
+
+To determine the proportions of intensity of light for different wavelength for the lamp used in the experiment,
+Define $\displaystyle B = \frac{b}{n} \text{, }Y = \frac{y}{n} \text{ and } R = \frac{r}{n}$
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+        d & B & Y & R \\ \hline
+        40 & 0.40 & 0.82 & 0.17 \\ \hline
+        38 & 0.41 & 0.84 & 0.18 \\ \hline
+        36 & 0.40 & 0.82 & 0.18 \\ \hline
+        34 & 0.39 & 0.82 & 0.17 \\ \hline
+        32 & 0.40 & 0.82 & 0.17 \\ \hline
+        30 & 0.39 & 0.81 & 0.17 \\ \hline
+        28 & 0.39 & 0.82 & 0.18 \\ \hline
+        26 & 0.39 & 0.81 & 0.18 \\ \hline
+        24 & 0.41 & 0.85 & 0.19 \\ \hline
+        22 & 0.41 & 0.83 & 0.19 \\ \hline
+        20 & 0.42 & 0.86 & 0.20 \\ \hline
+        18 & 0.40 & 0.84 & 0.20 \\ \hline
+        16 & 0.37 & 0.81 & 0.19 \\ \hline
+        Average & 0.40 & 0.83 & 0.18\\  \hline
+    \end{tabular}
+\end{table}
+
+%---------------------------------------------------
+
+Performing regression for the data using the model $\displaystyle d = \frac{c_x}{x^2}+k_x$
+
+\begin{align*}
+    \text{For } x&=n \text{ , } c_n=263.1046 \text{ and } k_n=-0.0784833 \text{ with } R^{2}=0.9988 \\
+    \text{For } x&=b \text{ , } c_b=101.3322 \text{ and } k_b=-0.0265579 \text{ with } R^{2}=0.9903 \\
+    \text{For } x&=y \text{ , } c_y=217.3181 \text{ and } k_y=-0.0635827 \text{ with } R^{2}=0.9957 \\
+    \text{For } x&=r \text{ , } c_r=52.36267 \text{ and } k_r=-0.0193392 \text{ with } R^{2}=0.9968 \\
+\end{align*}
+The values for k given by regression are of the magnitude of values for which the lamp placed at the furthest point but smaller in every case.
+Although to say that all of it is random noise is a bit of a strech.
+There is something more going on here.
+For now we carry on with the calculations.
+
+We can compute for $B$, $Y$ and $R$ in a similar fasion even here.
+(replace $x$ with $k_x$ in the original formula)
+This gives the values
+\begin{align*}
+    B &= 0.33 \\
+    Y &= 0.81 \\
+    R &= 0.24 
+\end{align*}
+
+Comparing the values computed by the table with the values given by regression,
+it is clear that both of bthem are suspiciously similar in composition.
+If one were to make a wild guess as to why these are so similar, they could say that somehow the lamp is itself the cause of the noise.
+Surpisingly that might actually be correct.
+To see why we take a closer look at the lamp
+\captionsetup[figure]{labelformat=empty}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[line cap=round,line join=round]
+        \def\r {4}  % mirror radius
+        \def\a{25}  % mirror angle
+        \coordinate (C)  at (0,0);
+        \coordinate (F)  at (0.5*\r,0);
+        \draw[ray,shorten <=0cm] (F)  -- (3.96,0.5) -- (-5,0.5);
+        \draw[ray,shorten <=0cm] (F)  -- (3.96,-0.5) -- (-5,-0.5);
+        \draw[ray,shorten <=0cm] (F)  -- (-4.4,0.5);
+        \draw[ray,shorten <=0cm] (F)  -- (-4.4,-0.5);
+        \draw[ray, densely dashed,shorten <=0cm] (F)  -- (-1.9,0.5);
+        \draw[ray, densely dashed,shorten <=0cm] (F)  -- (-1.9,-0.5);
+        \path[name path=mirror] (30:4) arc (30:-30:4);
+        \fill[gray,opacity=0.2] (0,0) + (30:4) arc (30:-30:4) --++ (0.25,0) arc (-30:30:4) -- cycle;
+        \draw (0,0) + (30:4) arc (30:-30:4);
+        \draw (-4.5,0.5) rectangle (-4.4,-0.5);
+        \fill [gray,opacity=1] (-4.5,0.5) rectangle (-4.4,-0.5);
+        \draw [densely dashed] (-2,0.5) rectangle (-1.9,-0.5);
+        \fill [gray,opacity=0.5] (-2,0.5) rectangle (-1.9,-0.5);
+        \fill (F) circle (1pt) node [below]{$F$};
+    \end{tikzpicture}
+    \caption{The figure shows what is being explained. \\ $F$ is the position of the light source. The rectangle is the detector placed at different places.}
+\end{figure}
+\captionsetup[figure]{labelformat=default}
+
+The reason that intensity falls off with the inverse square law is because we see the proportion of a small segment with respect to the total surface area of the 'light sphere'.
+As the distance from light source increases,
+the window through which we measure remains constant but not the area of the sphere, which increases as $r^2$.
+The above argument is true for a point source of light.
+The lamp however, is not a point light source.
+Most lamps (including the one I worked with in this experiment) have a concave mirror behind them to focus more light forward.
+The point source is located at the focus of the mirror.
+This means all rays emmitted towards the mirror are going to get reflected and move parallelly horizontally.
+But because they are parallel, the distance from the sensor no longer affects the amount of light entering the sensor.
+The suspicions turns out to be true.
+The constant from the regression which has he same composition as the light source and remains constant with distance is the the amount of light entering the sensor after reflection from the mirror.
+
+Thus, we can safely say that by adding the constant in the formula, we are not overfitting the data.
+
+Now we proceed with the regression
+\begin{figure}[!ht]
+    \centering
+    \setlength\fwidth{0.75\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{inverse_sq.tex}
+\end{figure}
+$$\displaystyle d = \frac{c}{n^a}+k$$
+Then we get $c=255.03876$, $k=-0.0811017$ and $a=1.9881$, with $R^{2}=0.9988$
+
+\noindent For the other filters, performing regression for this model yields the following result
+\begin{align*}
+    \text{For } x&=b \text{ , } a=1.61045\text{ , } c_b=37.23076 \text{ and } k_b=-0.0678577 \text{ with } R^{2}=0.9928 \\
+    \text{For } x&=y \text{ , } a=1.80701\text{ , } c_y=131.66932 \text{ and } k_y=-0.102416 \text{ with } R^{2}=0.9963 \\
+    \text{For } x&=r \text{ , } a=2.01652\text{ , } c_r=54.67836 \text{ and } k_r=-0.0186266 \text{ with } R^{2}=0.9968
+\end{align*}
+Hence, we can conclude that the intensity falls off with the inverse square relation.
+
+\section*{Result}
+It has been verified that intensity falls off with the inverse square of distance from light source.
+The value of plank's constant has been calculated to be
+\[h = 0.4737 \pm 0.343\text{ }Js\]
+
+
+\end{document}
