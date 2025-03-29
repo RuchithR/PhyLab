@@ -1,0 +1,45 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.12941,0.12941,0.12941}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.951\fwidth,
+height=\fheight,
+at={(0\fwidth,0\fheight)},
+scale only axis,
+xmin=0,
+xmax=5,
+xtick={0, 1, 2, 3, 4, 5},
+xlabel style={font=\color{mycolor2}},
+xlabel={Measurement Number},
+ymin=332,
+ymax=348,
+ylabel style={font=\color{mycolor2}},
+ylabel={Value},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+legend style={legend cell align=left, align=left}
+]
+\addplot [color=mycolor1, only marks, mark=o, mark options={solid, mycolor1}]
+ plot [error bars/.cd, y dir=both, y explicit, error bar style={line width=0.5pt}, error mark options={line width=0.5pt, mark size=6.0pt, rotate=90}]
+ table[row sep=crcr, y error plus index=2, y error minus index=3]{%
+1	343	1	1\\
+2	342	1	1\\
+3	339	4	4\\
+4	343	1	1\\
+};
+\addlegendentry{Data}
+
+\addplot [color=red]
+  table[row sep=crcr]{%
+0	342.591836734694\\
+6	342.591836734694\\
+};
+\addlegendentry{Weighted Average}
+
+\end{axis}
+\end{tikzpicture}%

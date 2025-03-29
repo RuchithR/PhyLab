@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+
+\usepackage{float}
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\usepackage{matlab-prettifier}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots} 
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{array,multirow}
+\usepackage{tabularx,booktabs}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\fwidth
+\newlength\fheight
+\usepackage{float,graphicx}
+\pagestyle{fancy}
+\fancyhead[l]{}
+\fancyhead[c]{Experiment 7}
+\fancyhead[r]{}
+\fancyfoot[c]{\thepage}
+\setlength{\headheight}{20pt}
+\begin{document}
+\author{}
+\date{}
+\title{Brewster's Angle}
+\maketitle
+\section*{Aim}
+To find refractive index of glass by measuring brewster angle.
+\section*{Analysis}
+For the first reading, the vertical alignment changed linearly as the angle was changing which means that the amount of light measured needs to be scaled up as it deviated from the minimum value.
+We can reasonably approximate the distribution of intensity of a laser by a gaussian.
+Fitting a gaussian for the data we get the following plot.
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.75\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{normal.tex}
+\end{figure}
+This would give us the corrected values of intensities.
+However, doing so does not affect the readings near the minimum (\(0\) in the plot).
+This does not explain why the zero is not present in any of the readings, and how say that the minimum value is the brewster angle.
+
+Light that is reflected from a surface is highly polarized when the angle between the reflected ray and refracted ray is close to \(90^\circ\).
+By adding a polarizing filter to the incoming light, the amount of reflected light can be controlled by changed by rotating the polarizing filter.
+If the filter is not properly alligned, a small component of the light polarized in the direction the reflected beam gets through which means there is a non zero reading at brewster's angle.
+We see the same in the figure below.
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.75\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{sin.tex}
+\end{figure}
+The figure is fit using the equation
+\[y =  k\cos\left(\frac{\pi}{180}(x+c)\right)^{2}\]
+and we get the parameters as \(k=1403.79748\) and \(c=167.42097\).
+The data is not centered around zero as the laser source can be oriented in any angle which allows $c$ to be free and $k$ is just the amplitude.
+Thus, the detector does show the zero reading at $102.57903^\circ$ but due to the least count of the apparatus, we cannot reach those precise values.
+We now proceed ot calculate the value for brewster angle.
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.75\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{aver.tex}
+    \caption{The value is as $ 342.59 \pm 0.57$ }
+\end{figure}
+We subtract the value obtained above from $39^\circ$ to get the value for brewster angle.
+\section*{Result}
+We obtain the value of brewster angle as $ 56.41 \pm 0.57$ degrees.
+\end{document}

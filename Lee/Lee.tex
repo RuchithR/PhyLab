@@ -1,0 +1,174 @@
+\documentclass[12pt]{article}
+
+\usepackage{float}
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\usepackage{matlab-prettifier}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots} 
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{array,multirow}
+\usepackage{tabularx,booktabs}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\fwidth
+\newlength\fheight
+\usepackage{float,graphicx}
+\pagestyle{fancy}
+\fancyhead[l]{}
+\fancyhead[c]{Experiment 5}
+\fancyhead[r]{}
+\fancyfoot[c]{\thepage}
+\setlength{\headheight}{20pt}
+\begin{document}
+\author{}
+\date{}
+\title{Thermal conductivity by Lee's methord}
+\maketitle
+\section*{Aim}
+To measure the thermal conductivity of bad conductors of heat.
+\section*{Analysis}
+Newton's law of cooling is given by 
+\[\frac{dT}{dt} = -b(T-T_a)\]
+For solving this differential equation we shall put $x = T-T_a$
+\begin{align*}
+    \frac{dx}{dt} &= -bx \\
+    \int \frac{dx}{x} &= \int -b dt \\
+    \ln |x| &= -bt + c \\
+    x &= e^ce^{-bt} \\
+    T &= ae^{-bt} +T_a
+\end{align*}
+We see that the constant $a$ is independent from everything else as it is derived from the constant of integration, which does not depend on the data. 
+Performing fitting for the model
+\[y = ae^{-bt}+c\]
+We obtain the coefficients as listed in the table below.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+        \textbf{Material} & $a$ & $b$ & $c$ & $R^2$ \\ \hline
+        Glass & 21.42 & 0.637 & 67.93 & 0.9966 \\ \hline
+        Ebonite & 23.48 & 0.257 & 62.40 & 0.9962 \\ \hline
+        Wood & 24.48 & 0.115 & 54.13 & 0.9971 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.75\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \caption{Glass}
+    \input{x1.tex}
+    \caption{Ebonite}
+    \input{x2.tex}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.75\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \caption{Wood}
+    \input{x3.tex}
+\end{figure}
+We see that the values for $a$ is consistent.
+However for the values of $c$ we are getting it around $60^\circ C$.
+This is not the ambient temprature.
+The following section explains the values observed.
+
+For the first part of the experiment, when the sample disk is at equilibrium with the two brass disks,
+its temprature profile is a gradient like the diagram shown below(not to scale).
+\begin{center}
+    \begin{tikzpicture}[node distance=0.25cm][H]
+        \node[draw, minimum width=9cm, minimum height=1cm,dashed] (rect1) at (0,2.8125) {Top Brass Disk $D_2$};
+        \node[draw, minimum width=7.5cm, minimum height=0.5cm] (rect1) at (0,1.9825) {$T_2$};
+        \node[draw, minimum width=7.5cm, minimum height=0.5cm] (rect2) at (0,1.365) {$T$};
+        \node[draw, minimum width=7.5cm, minimum height=0.5cm] (rect3) at (0,0.8) {$T_1$};
+        \node[draw, minimum width=9cm, minimum height=1cm,dashed] (rect3) at (0,0.01) {Bottom Brass Disk $D_1$};
+    \end{tikzpicture}
+\end{center}
+The surface is cooled to room temprature but the insides are still hot because it is a bad conductor.
+Thus, during the second part of the experiment the temprature profile looks like the diagram shown below.
+\begin{center}
+    \begin{tikzpicture}[node distance=0.25cm][H]
+        \node[draw, minimum width=7.5cm, minimum height=0.5cm] (rect1) at (0,1.9825) {$T_a$};
+        \node[draw, minimum width=7.5cm, minimum height=0.5cm] (rect2) at (0,1.365) {$T$};
+        \node[draw, minimum width=7.5cm, minimum height=0.5cm] (rect3) at (0,0.8) {$T_1$};
+        \node[draw, minimum width=9cm, minimum height=1cm,dashed] (rect3) at (0,0.01) {Bottom Brass Disk $D_1$};
+    \end{tikzpicture}
+\end{center}
+Having a thin disk helps us to approximate the temprature profile to a simpler model in addition to not waiting long for the system to achieve equilibrium.
+
+Thus, during the second part of the experiment, the disk has cooled a bit but not as much to reach room temprature.
+We can conclude that the value of $c$ is the averaged value of the temprature of sample disk and the air below $D_1$ across the second experiment.
+However, for smaller intervals, we can approximate the curves to a straight lines at the tempratures $T_1 \pm 7^\circ C$ as seen in the plots.
+In order to reduce the amount of error due to losses in heat due to convection, I repeated the experiment with the following changes.
+First, I put a cover over the the cooling disk a few centimeters above it and then measured the cooling rate as shown in the diagram below.
+\begin{center}
+    \begin{tikzpicture}[node distance=0.25cm][H]
+        \node[draw, minimum width=12cm, minimum height=1cm] (rect1) at (0,1.5825) {Cover};
+        \node[draw, minimum width=9cm, minimum height=1cm,dashed] (rect3) at (0,0.01) {Bottom Brass Disk $D_1$};
+    \end{tikzpicture}
+\end{center}
+Measuring the cooling rate gave the value of $2^\circ C$ per minute at around $75^\circ C$.
+Then, I put the ebonite disk below the brass disk
+\begin{center}
+    \begin{tikzpicture}[node distance=0.25cm][H]
+        \node[draw, minimum width=12cm, minimum height=1cm] (rect1) at (0,1.5825) {Cover};
+        \node[draw, minimum width=9cm, minimum height=1cm,dashed] (rect3) at (0,0.01) {Bottom Brass Disk $D_1$};
+        \node[draw, minimum width=7.5cm, minimum height=0.5cm] (rect3) at (0,-0.8) {Ebonite disk};
+    \end{tikzpicture}
+\end{center}
+This would give the value of $1.992$ around the same temprature range.
+This shows that the effect of the disk is negligible due to the sample disks being bad conductors and the value of $k$ would come out
+
+Using these values we can proceed with the calculations.
+
+\[ms\frac{dT}{dt}=k\frac{A}{l}(T_2-T_1)\]
+rearanging terms we get
+\[k = \frac{msl}{\pi r^2(T_2-T_1)}\frac{dT}{dt}\]
+Calculating for the different materials, we get the values
+\begin{align*}
+    \text{Glass : } 0.336\\
+    \text{Ebonite : } 0.275\\
+    \text{Wood : } 0.160\\
+\end{align*}
+We ge the following values for error
+\begin{align*}
+    \sigma_{\Delta T} &= 1^\circ C \\
+    \sigma_l &= 0.1 cm \\
+    \sigma_r &= 0.02 mm \\
+\end{align*}
+There is another error term that is introduced in the slope by the fitting by checking how much the value changes if we vary the temprature range over which $k$ is measured(due to different materials).
+This gives the following error in slope
+\[\sigma_{slope} = 0.2\]
+If $f$ is a function of $x_i$s then the uncertainty in $f$ is given by
+\[\sigma_f^2=\sum_{i = 1}^{n} \bigg(\frac{\partial f}{\partial x_i}\sigma_{x_i}\bigg)^2 \]
+$k$ is a function of $\sigma_{\Delta T}$, $\sigma_l$, $\sigma_r$ and $\sigma_{slope}$
+\[\bigg(\frac{\partial f}{\partial l}\sigma_{l}\bigg)^2+\bigg(\frac{\partial f}{\partial r}\sigma_{r}\bigg)^2 \approx 0\]
+\[\sigma_k^2 =\bigg(\frac{msl}{\pi r^2(T_2-T_1)^2}\frac{dT}{dt}\sigma_{\Delta T}\bigg)^2 + \bigg(\frac{msl}{\pi r^2(T_2-T_1)}\sigma_{slope}\bigg)^2 \]
+which gives the error in $k$
+\begin{align*}
+    \text{Glass : }\sigma_k &= 0.040 \\
+    \text{Ebonite : }\sigma_k &= 0.039\\
+    \text{Wood : }\sigma_k &= 0.018
+\end{align*}
+% m=-1.67261
+% m=-6.3
+% m=-2.66767
+\section*{Result}
+We have found the conductivity of the materials and thier values are listed below.
+\begin{align*}
+    \text{Glass } &= 0.336 \pm 40 \times 10^{-3} W/mK\\
+    \text{Ebonite } &= 275 \pm 39\times 10^{-3} W/mK\\
+    \text{Wood }&= 160 \pm  18\times 10^{-3} W/mK
+\end{align*}
+
+\end{document}
