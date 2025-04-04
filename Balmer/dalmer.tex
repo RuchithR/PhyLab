@@ -1,0 +1,46 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.12941,0.12941,0.12941}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.951\fwidth,
+height=\fheight,
+at={(0\fwidth,0\fheight)},
+scale only axis,
+xmin=0,
+xmax=6,
+xtick={0, 1, 2, 3, 4, 5, 6},
+xlabel style={font=\color{mycolor2}},
+xlabel={Measurement Number},
+ymin=1990,
+ymax=2080,
+ylabel style={font=\color{mycolor2}},
+ylabel={Value},
+axis background/.style={fill=white},
+xmajorgrids,
+ymajorgrids,
+legend style={at={(0.97,0.03)}, anchor=south east, legend cell align=left, align=left}
+]
+\addplot [color=mycolor1, only marks, mark=o, mark options={solid, mycolor1}]
+ plot [error bars/.cd, y dir=both, y explicit, error bar style={line width=0.5pt}, error mark options={line width=0.5pt, mark size=6.0pt, rotate=90}]
+ table[row sep=crcr, y error plus index=2, y error minus index=3]{%
+1	2032.53999816849	38.06	38.06\\
+2	2043.6279096813	31	31\\
+3	2049.55165696171	21.44	21.44\\
+4	2053.56805299361	24.2	24.2\\
+5	2054.46728863704	15.91	15.91\\
+};
+\addlegendentry{Data}
+
+\addplot [color=red]
+  table[row sep=crcr]{%
+0	2050.42673964982\\
+6	2050.42673964982\\
+};
+\addlegendentry{Weighted Average}
+
+\end{axis}
+\end{tikzpicture}%
