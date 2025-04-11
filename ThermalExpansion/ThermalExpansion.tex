@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+
+\usepackage{float}
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\usepackage{matlab-prettifier}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots} 
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{array,multirow}
+\usepackage{tabularx,booktabs}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\fwidth
+\newlength\fheight
+\usepackage{float,graphicx}
+\pagestyle{fancy}
+\fancyhead[l]{}
+\fancyhead[c]{Experiment 10}
+\fancyhead[r]{}
+\fancyfoot[c]{\thepage}
+\setlength{\headheight}{20pt}
+\begin{document}
+\author{}
+\date{}
+\title{Thermal Expansion}
+\maketitle
+\section*{Aim}
+To determine the coefficient of thermal expansion of various materials.
+\section*{Analysis}
+All materials expand when heated and contract when cooled.
+For solids close to room temperature, the dependence is linear and can be described by the following equation.
+\[\Delta L = L_0\alpha(T-T_0)\]
+Rearranging terms we get
+\[\frac{1}{\alpha} = L_0\cdot\frac{dT}{dL}\]
+If $f$ is a product of $x_i$s then the uncertainty in $f$ is given by
+\[\bigg(\frac{\sigma_f}{f}\bigg)^2=\sum_{i = 1}^{n}\bigg(\frac{\sigma_{x_i}}{x_i}\bigg)^2 \]
+The error in $\alpha$ is given by
+\[\sigma_\alpha = \sqrt{\bigg(\frac{\sigma_{L_0}}{L_0}\bigg)^2 +\bigg(\frac{\sigma^2_{m}}{m}\bigg)^2}\]
+We calculate this for different materials.
+
+\vspace*{7pt}
+
+\noindent \textbf{Safety precautions :}
+The induction stove must not go beyond 800 watts.
+The pipes carring steam must not be bent.
+Use gloves to touch hot equipment.
+\subsection*{Brass}
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.7\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{TE1.tex}
+    \caption{The slope is $71.36\pm0.85$}
+\end{figure}
+\[\alpha = \frac{1}{582\times 71.36} = 2.408\times 10^{-5}\]
+The uncertainties are
+\begin{align*}
+    \sigma_{L_0} &= 1 \\
+    \sigma_{slope} &= 0.85
+\end{align*}
+Thus we get
+\[\sigma_\alpha = 1.203\% = 0.029\times10^{-5}\]
+The coefficient of thermal expansion in brass is $2.408\pm 0.03 \times 10^{-5}$
+
+\subsection*{Copper}
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.7\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{TE2.tex}
+    \caption{The slope is $91.51\pm1.10$}
+\end{figure}
+\[\alpha = \frac{1}{582\times 91.51} = 1.878\times 10^{-5}\]
+The uncertainties are
+\begin{align*}
+    \sigma_{L_0} &= 1 \\
+    \sigma_{slope} &= 1.10
+\end{align*}
+Thus we get
+\[\sigma_\alpha = 1.215\% = 0.023\times10^{-5}\]
+The coefficient of thermal expansion in copper is $1.878\pm 0.023 \times 10^{-5}$
+
+\subsection*{Aluminium}
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.7\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{TE3.tex}
+    \caption{The slope is $84.07\pm0.92$}
+\end{figure}
+\[\alpha = \frac{1}{582\times 84.07} = 2.044\times 10^{-5}\]
+The uncertainties are
+\begin{align*}
+    \sigma_{L_0} &= 1 \\
+    \sigma_{slope} &= 0.92
+\end{align*}
+Thus we get
+\[\sigma_\alpha = 1.110\% = 0.023\times10^{-5}\]
+The coefficient of thermal expansion in aluminium is $2.044\pm 0.03 \times 10^{-5}$
+\section*{Result}
+The values of coefficient of thermal expansion for different materials is listed below.
+\begin{align*}
+    \text{Brass : }&2.408\pm 0.029 \times 10^{-5} \\
+    \text{Copper : }&1.878\pm 0.023 \times 10^{-5} \\
+    \text{Aluminium : }&1.110\pm 0.023 \times 10^{-5}
+\end{align*}
+
+\end{document}

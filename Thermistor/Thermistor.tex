@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+
+\usepackage{float}
+\usepackage{graphicx}			% Use this package to include images
+\usepackage{amsmath}			% A library of many standard math expressions
+\usepackage[margin=1in]{geometry}% Sets 1in margins. 
+\usepackage{fancyhdr}			% Creates headers and footers
+\usepackage{enumerate}          %These two package give custom labels to a list
+\usepackage[shortlabels]{enumitem}
+\usepackage{matlab-prettifier}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots} 
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{array,multirow}
+\usepackage{tabularx,booktabs}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows.meta,arrows}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\fwidth
+\newlength\fheight
+\usepackage{float,graphicx}
+\pagestyle{fancy}
+\fancyhead[l]{}
+\fancyhead[c]{Experiment 9}
+\fancyhead[r]{}
+\fancyfoot[c]{\thepage}
+\setlength{\headheight}{20pt}
+\begin{document}
+\author{}
+\date{}
+\title{Thermistor}
+\maketitle
+\section*{Aim}
+To understand the working principle behind the thermistor.
+\section*{Analysis}
+The Steinhart-Hart Equation is used to convert resistance reading of a thermistor to thermodynamic temperature.
+\[\frac{1}{T} = A + B\ln R + C(\ln R)^3\]
+The formula was derived using fundamental principles of solid state physics. NTCs are polycrystalline
+semiconductor devices; the resistance should follow the classical temperature activated form.
+\[R = R_0 e^{B\big(\frac{1}{T}-\frac{1}{T_0}\big)}\]
+which on solving gives
+\[\frac{1}{T} = \frac{1}{T_0} + \frac{1}{B}\bigg( \ln \frac{R}{R_0}\bigg)\]
+which dissolves into a linear relation
+\[\frac{1}{T} = a_0 + a_1 \ln R\]
+This is a good enough relation for small changes in resistance.
+For larger deviations, $B$ itself becomes temperature dependent and we apply series expansion to get more accurate results.
+\[\frac{1}{T} = \sum_{i =0 }^{n} a_i \ln ^i R\]
+We find that $a_2$ is statistically insignificant and there is no loss in precision by terminating the expansion after $n =3 $.
+This gives us back the Steinhart-Hart Equation.
+We use both linear and cubic fits to approximate the relationship between $\ln R \text{ and } \frac{1}{T}$.
+\vspace*{7pt}
+
+\noindent \textbf{Safety precautions :}
+The induction stove must not go beyond 800 watts.
+The pipes carring steam must not be bent.
+Use gloves to touch hot equipment.
+
+\pagebreak
+
+The data is different for heating and cooling the materials and follows a hysteresis.
+Hence we perform the regression separately.
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.7\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{heat.tex}
+\end{figure}
+For the heating curve we get the following regression parameters
+
+\noindent For cubic fit:\begin{align*}
+    A &= 2.95208 \times 10^{-3}\\
+    B &=0.60321 \times 10^{-3}\\
+    C &=-0.159792 \times 10^{-3}\\
+    R^{2}&=0.9927
+\end{align*}
+For linear fit:
+\begin{align*}
+    a_0 &= 2.95547 \times 10^{-3} \\
+    a_1 &=0.489919 \times 10^{-3} \\
+    R^{2}&=0.9769
+\end{align*}
+
+\begin{figure}[H]
+    \centering
+    \setlength\fwidth{0.7\textwidth}
+    \setlength\fheight{0.5\textwidth}
+    \input{cool.tex}
+\end{figure}
+For the cooling curve we get the following regression parameters
+
+\noindent For cubic fit:
+\begin{align*}
+    A &= 2.82265 \times 10^{-3} \\
+    B &= 0.298851 \times 10^{-3} \\
+    C &= 0.236043 \times 10^{-3} \\
+    R^{2}&=0.9856
+\end{align*}
+For linear fit:
+\begin{align*}
+    a_0 &= 2.76602 \times 10^{-3} \\
+    a_1 &= 0.557824 \times 10^{-3} \\
+    R^{2}&=0.9422
+\end{align*}
+\section*{Result}
+We have verified that the resistance of the thermistor depends on the temperature wrt the Steinhart-Hart Equation. The thermistor is linear for small temperature ranges.
+\end{document}
